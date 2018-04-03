@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native'
-import App from './app'
+Bananas = require './App'
 
-AppRegistry.registerComponent 'first', => App
+AppRegistry.registerComponent 'first0', => Bananas
