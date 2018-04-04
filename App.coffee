@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { Image } from 'react-native'
+import { Text, View } from 'react-native'
 
-class Bananas extends Component
+class Greeting extends Component
   render: ->
-    pic =
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    <Text>Hello, {@props.name}!</Text>
 
-    <Image source={pic} style={{width: 193, height: 110}}/>
-
-module.exports = Bananas
+module.exports = class App extends Component
+  render: ->
+    <View style={{alignItems: 'center'}}>
+      <Greeting name='Rexxar'/>
+      <Greeting name='Jaina'/>
+      <Greeting name='Valeera'/>
+    </View>
