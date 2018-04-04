@@ -11,8 +11,24 @@ import {
 } from 'react-native';
 
 Greeting = class Greeting extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      is_showing_text: true
+    };
+    setInterval(() => {
+      return this.setState((previousState) => {
+        return {
+          is_showing_text: !previousState.is_showing_text
+        };
+      });
+    }, 1000);
+  }
+
   render() {
-    return <Text>Hello, {this.props.name}!</Text>;
+    var text;
+    text = this.state.is_showing_text ? this.props.name : ' ';
+    return <Text>{text}</Text>;
   }
 
 };
@@ -24,7 +40,8 @@ module.exports = App = class App extends Component {
       }}>
       <Greeting name='Rexxar' />
       <Greeting name='Jaina' />
-      <Greeting name='Valeera' />
+      <Greeting name='Valeera2' />
+      <Text>wtf</Text>
     </View>;
   }
 

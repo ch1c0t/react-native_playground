@@ -2,13 +2,27 @@ import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
 class Greeting extends Component
+  constructor: (props) ->
+    super props
+    @state =
+      is_showing_text: yes
+
+    setInterval(
+      =>
+        @setState (previousState) =>
+          is_showing_text: !previousState.is_showing_text
+      1000
+    )
+
   render: ->
-    <Text>Hello, {@props.name}!</Text>
+    text = if @state.is_showing_text then @props.name else ' '
+    <Text>{text}</Text>
 
 module.exports = class App extends Component
   render: ->
     <View style={{alignItems: 'center'}}>
       <Greeting name='Rexxar'/>
       <Greeting name='Jaina'/>
-      <Greeting name='Valeera'/>
+      <Greeting name='Valeera2'/>
+      <Text>wtf</Text>
     </View>
