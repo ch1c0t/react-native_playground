@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, Button, Alert } from 'react-native'
 
 class Greeting extends Component
   constructor: (props) ->
@@ -37,8 +37,14 @@ module.exports = class App extends Component
         <Text style={{padding: 10, fontSize: 42}}>
           {@state.text.split('').reverse().join('')}
         </Text>
+        <Button
+          onPress={
+            => Alert.alert 'You tapped the button.'
+          }
+          title="Press me"
+          />
       </View>
-      <View style={{flex: 3, backgroundColor: 'steelblue', alignItems: 'center'}}>
+      <View style={{flex: 2, backgroundColor: 'steelblue', alignItems: 'center'}}>
         <Greeting name='Rexxar'/>
         <Greeting name='Jaina'/>
         <Greeting name='Valeera2'/>

@@ -8,7 +8,9 @@ import React, {
 import {
   Text,
   View,
-  TextInput
+  TextInput,
+  Button,
+  Alert
 } from 'react-native';
 
 Greeting = class Greeting extends Component {
@@ -68,9 +70,12 @@ module.exports = App = class App extends Component {
       }}>
           {this.state.text.split('').reverse().join('')}
         </Text>
+        <Button onPress={() => {
+        return Alert.alert('You tapped the button.');
+      }} title="Press me" />
       </View>
       <View style={{
-        flex: 3,
+        flex: 2,
         backgroundColor: 'steelblue',
         alignItems: 'center'
       }}>
