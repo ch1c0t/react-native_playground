@@ -7,7 +7,8 @@ import React, {
 
 import {
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 Greeting = class Greeting extends Component {
@@ -34,6 +35,13 @@ Greeting = class Greeting extends Component {
 };
 
 module.exports = App = class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    };
+  }
+
   render() {
     return <View style={{
         flex: 1
@@ -41,11 +49,26 @@ module.exports = App = class App extends Component {
       <View style={{
         flex: 1,
         backgroundColor: 'powderblue'
+      }}>
+        <TextInput style={{
+        height: 40
+      }} placeholder='Type something here' onChangeText={(text) => {
+        return this.setState({
+          text: text
+        });
       }} />
+      </View>
       <View style={{
         flex: 2,
         backgroundColor: 'skyblue'
-      }} />
+      }}>
+        <Text style={{
+        padding: 10,
+        fontSize: 42
+      }}>
+          {this.state.text.split('').reverse().join('')}
+        </Text>
+      </View>
       <View style={{
         flex: 3,
         backgroundColor: 'steelblue',
