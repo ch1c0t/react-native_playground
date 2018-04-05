@@ -36,12 +36,26 @@ Greeting = class Greeting extends Component {
 module.exports = App = class App extends Component {
   render() {
     return <View style={{
+        flex: 1
+      }}>
+      <View style={{
+        flex: 1,
+        backgroundColor: 'powderblue'
+      }} />
+      <View style={{
+        flex: 2,
+        backgroundColor: 'skyblue'
+      }} />
+      <View style={{
+        flex: 3,
+        backgroundColor: 'steelblue',
         alignItems: 'center'
       }}>
-      <Greeting name='Rexxar' />
-      <Greeting name='Jaina' />
-      <Greeting name='Valeera2' />
-      <Text>wtf</Text>
+        <Greeting name='Rexxar' />
+        <Greeting name='Jaina' />
+        <Greeting name='Valeera2' />
+        <Text>wtf</Text>
+      </View>
     </View>;
   }
 
