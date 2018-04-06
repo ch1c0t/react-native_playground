@@ -24,18 +24,20 @@ Greeting = class Greeting extends Component {
       is_showing_text: true
     };
     setInterval(() => {
-      return this.setState((previousState) => {
-        return {
-          is_showing_text: !previousState.is_showing_text
-        };
-      });
+      if (this.refs.Ref) {
+        return this.setState((previousState) => {
+          return {
+            is_showing_text: !previousState.is_showing_text
+          };
+        });
+      }
     }, 1000);
   }
 
   render() {
     var text;
     text = this.state.is_showing_text ? this.props.name : ' ';
-    return <Text>{text}</Text>;
+    return <Text ref="Ref">{text}</Text>;
   }
 
 };

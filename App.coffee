@@ -10,14 +10,15 @@ class Greeting extends Component
 
     setInterval(
       =>
-        @setState (previousState) =>
-          is_showing_text: !previousState.is_showing_text
+        if @refs.Ref
+          @setState (previousState) =>
+            is_showing_text: !previousState.is_showing_text
       1000
     )
 
   render: ->
     text = if @state.is_showing_text then @props.name else ' '
-    <Text>{text}</Text>
+    <Text ref="Ref">{text}</Text>
 
 class Second extends Component
   constructor: (props) ->
