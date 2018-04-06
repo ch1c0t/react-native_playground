@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TextInput, Button, Alert } from 'react-native'
+import { StackNavigator } from 'react-navigation'
 
 class Greeting extends Component
   constructor: (props) ->
@@ -18,7 +19,7 @@ class Greeting extends Component
     text = if @state.is_showing_text then @props.name else ' '
     <Text>{text}</Text>
 
-module.exports = class App extends Component
+class Second extends Component
   constructor: (props) ->
     super props
     @state =
@@ -51,3 +52,20 @@ module.exports = class App extends Component
         <Text>wtf</Text>
       </View>
     </View>
+
+class First extends Component
+  render: ->
+    { navigate } = @props.navigation
+    <Button
+      title='Go to Second'
+      onPress={
+        =>
+          navigate 'Second'
+      }
+      />
+
+module.exports = StackNavigator
+  First:
+    screen: First
+  Second:
+    screen: Second
