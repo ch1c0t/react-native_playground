@@ -2,24 +2,6 @@ import React, { Component } from 'react'
 import { Text, View, TextInput, Button, Alert } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-class Greeting extends Component
-  constructor: (props) ->
-    super props
-    @state =
-      is_showing_text: yes
-
-    setInterval(
-      =>
-        if @refs.Ref
-          @setState (previousState) =>
-            is_showing_text: !previousState.is_showing_text
-      1000
-    )
-
-  render: ->
-    text = if @state.is_showing_text then @props.name else ' '
-    <Text ref="Ref">{text}</Text>
-
 class Second extends Component
   constructor: (props) ->
     super props
@@ -27,6 +9,10 @@ class Second extends Component
       text: ''
 
   render: ->
+    { params } = @props.navigation.state
+    if params?
+      name = params.name
+
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: 'powderblue'}}>
         <TextInput
@@ -47,23 +33,30 @@ class Second extends Component
           />
       </View>
       <View style={{flex: 2, backgroundColor: 'steelblue', alignItems: 'center'}}>
-        <Greeting name='Rexxar'/>
-        <Greeting name='Jaina'/>
-        <Greeting name='Valeera2'/>
-        <Text>wtf</Text>
+        <Text>{name}</Text>
       </View>
     </View>
 
 class First extends Component
   render: ->
     { navigate } = @props.navigation
-    <Button
-      title='Go to Second'
-      onPress={
-        =>
-          navigate 'Second'
-      }
-      />
+    <View>
+      <Button
+        title='Go to Second'
+        onPress={
+          =>
+            navigate 'Second',
+              name: 'John'
+        }
+        />
+      <Button
+        title='Go to Second without name'
+        onPress={
+          =>
+            navigate 'Second'
+        }
+        />
+    </View>
 
 module.exports = StackNavigator
   First:
