@@ -17,78 +17,96 @@ import {
   StackNavigator
 } from 'react-navigation';
 
-Second = class Second extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: ''
-    };
-  }
-
-  render() {
-    var name, params;
-    ({params} = this.props.navigation.state);
-    if (params != null) {
-      name = params.name;
+Second = (function() {
+  class Second extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        text: ''
+      };
     }
-    return <View style={{
-        flex: 1
-      }}>
+
+    render() {
+      var name, params;
+      ({params} = this.props.navigation.state);
+      if (params != null) {
+        name = params.name;
+      }
+      return <View style={{
+          flex: 1
+        }}>
       <View style={{
-        flex: 1,
-        backgroundColor: 'powderblue'
-      }}>
+          flex: 1,
+          backgroundColor: 'powderblue'
+        }}>
         <TextInput style={{
-        height: 40
-      }} placeholder='Type something here' onChangeText={(text) => {
-        return this.setState({
-          text: text
-        });
-      }} />
+          height: 40
+        }} placeholder='Type something here' onChangeText={(text) => {
+          return this.setState({
+            text: text
+          });
+        }} />
       </View>
       <View style={{
-        flex: 2,
-        backgroundColor: 'skyblue'
-      }}>
+          flex: 2,
+          backgroundColor: 'skyblue'
+        }}>
         <Text style={{
-        padding: 10,
-        fontSize: 42
-      }}>
+          padding: 10,
+          fontSize: 42
+        }}>
           {this.state.text.split('').reverse().join('')}
         </Text>
         <Button onPress={() => {
-        return Alert.alert('You tapped the button.');
-      }} title="Press me" />
+          return Alert.alert('You tapped the button.');
+        }} title="Press me" />
       </View>
       <View style={{
-        flex: 2,
-        backgroundColor: 'steelblue',
-        alignItems: 'center'
-      }}>
+          flex: 2,
+          backgroundColor: 'steelblue',
+          alignItems: 'center'
+        }}>
         <Text>{name}</Text>
       </View>
     </View>;
-  }
+    }
 
-};
+  };
 
-First = class First extends Component {
-  render() {
-    var navigate;
-    ({navigate} = this.props.navigation);
-    return <View>
+  Second.navigationOptions = {
+    title: 'Seco'
+  };
+
+  return Second;
+
+}).call(this);
+
+First = (function() {
+  class First extends Component {
+    render() {
+      var navigate;
+      ({navigate} = this.props.navigation);
+      return <View>
       <Button title='Go to Second' onPress={() => {
-        return navigate('Second', {
-          name: 'John'
-        });
-      }} />
+          return navigate('Second', {
+            name: 'John'
+          });
+        }} />
       <Button title='Go to Second without name' onPress={() => {
-        return navigate('Second');
-      }} />
+          return navigate('Second');
+        }} />
     </View>;
-  }
+    }
 
-};
+  };
+
+  First.navigationOptions = {
+    title: 'Home'
+  };
+
+  return First;
+
+}).call(this);
 
 module.exports = StackNavigator({
   First: {

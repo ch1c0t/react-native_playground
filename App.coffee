@@ -8,6 +8,9 @@ class Second extends Component
     @state =
       text: ''
 
+  @navigationOptions =
+    title: 'Seco'
+
   render: ->
     { params } = @props.navigation.state
     if params?
@@ -38,6 +41,9 @@ class Second extends Component
     </View>
 
 class First extends Component
+  @navigationOptions =
+    title: 'Home'
+
   render: ->
     { navigate } = @props.navigation
     <View>
